@@ -26,6 +26,8 @@ my @Functions = qw(
     jit_function_get_optimization_level
     jit_function_get_max_optimization_level
 
+    jit_insn_new_block
+    jit_insn_load
     jit_insn_add
     jit_insn_dup
     jit_insn_mul

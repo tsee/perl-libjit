@@ -4,6 +4,10 @@
 
 #include "helpers.h"
 
+int jit_insn_new_block(LibJIT::Function function);
+
+LibJIT::Value jit_insn_load(LibJIT::Function func, LibJIT::Value value);
+
 LibJIT::Value jit_insn_add(LibJIT::Function function, LibJIT::Value value1, LibJIT::Value value2);
 
 LibJIT::Value jit_insn_dup(LibJIT::Function function, LibJIT::Value value2);
