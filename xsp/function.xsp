@@ -6,12 +6,23 @@
 
 LibJIT::Function jit_function_create(LibJIT::Context context, LibJIT::Type signature);
 
+LibJIT::Context jit_function_get_context(LibJIT::Function function);
+
 int jit_function_compile(LibJIT::Function function);
+
+int jit_function_is_compiled(LibJIT::Function func);
+void jit_function_set_recompilable(LibJIT::Function func);
+void jit_function_clear_recompilable(LibJIT::Function func);
+int jit_function_is_recompilable(LibJIT::Function func);
+
+LibJIT::Type jit_function_get_signature(LibJIT::Function func);
 
 IV jit_function_to_closure(LibJIT::Function function)
     %code{% RETVAL = (IV) jit_function_to_closure(function); %};
 
 void jit_function_set_optimization_level(LibJIT::Function function, unsigned int level);
+unsigned int jit_function_get_optimization_level(LibJIT::Function function);
+unsigned int jit_function_get_max_optimization_level(void);
 
 %{
 

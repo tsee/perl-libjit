@@ -16,8 +16,15 @@ my @Functions = qw(
     jit_function_create
     jit_function_compile
     jit_function_to_closure
-    jit_function_set_optimization_level
     jit_function_apply
+    jit_function_get_context
+    jit_function_is_compiled
+    jit_function_set_recompilable
+    jit_function_clear_recompilable
+    jit_function_is_recompilable
+    jit_function_set_optimization_level
+    jit_function_get_optimization_level
+    jit_function_get_max_optimization_level
 
     jit_insn_add
     jit_insn_dup

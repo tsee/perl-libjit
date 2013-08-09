@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 2;
+use Test::More tests => 8;
 
 use LibJIT::API qw(:all);
 
@@ -15,6 +15,20 @@ my $signature = jit_type_create_signature(
     jit_abi_cdecl, jit_type_int,
     [jit_type_int, jit_type_int, jit_type_int], 1);
 my $fun = jit_function_create($cxt, $signature);
+
+# Just add arbitrary test for jit_function_* aux functions
+isa_ok(jit_function_get_context($fun), 'LibJIT::Context');
+
+ok(!jit_function_is_compiled($fun), "jit_function_is_compiled on uncompiled function");
+jit_function_set_recompilable($fun);
+ok(jit_function_is_recompilable($fun), "jit_function_is_recompilable on recomp. function");
+jit_function_clear_recompilable($fun);
+ok(!jit_function_is_recompilable($fun), "jit_function_is_recompilable on non-recomp. function");
+
+ok(defined(jit_function_get_max_optimization_level()), "jit_function_get_max_optimization_level");
+jit_function_set_optimization_level($fun, jit_function_get_max_optimization_level());
+ok(defined(jit_function_get_optimization_level($fun)), "jit_function_get_optimization_level");
+
 
 # emit code
 my ($x, $y, $z) = map jit_value_get_param($fun, $_), 0..2;
